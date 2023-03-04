@@ -80,7 +80,7 @@ namespace TestIndianStatesCensusAnalyser
         }
 
         /// <summary>
-        /// TC2.1- Given indian code data file when readed should return census data count
+        /// TC2.1- Given indian code data file when readed should return code data count
         /// </summary>
         [Test]
         public void GivenIndianCensusDataFileWhenReadedShouldReturnCodeDataCount()
