@@ -13,14 +13,19 @@ namespace TestIndianStatesCensusAnalyser
         static string delimiterIndianCensusfilePath = @"E:\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem\CSVFiles\DelimiterIndianCensusData.csv";
         static string wrongHeaderIndianCensusfilePath = @"E:\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem\CSVFiles\WrongHeaderIndianStateCensusData.csv";
 
+        static string indianStateCodeHeaders = "SrNo,State Name,TIN,StateCode";
+        static string indianStateCodefilePath = @"E:\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem248\IndianStatesCensusAnalyserProblem\CSVFiles\IndianStateCode.csv";
+
         IndianStatesCensusAnalyserProblem.CensusAnalyser censusAnalyser;
         Dictionary<string, CensusDTO> totalRecord;
+        Dictionary<string, CensusDTO> stateRecord;
 
         [SetUp]
         public void Setup()
         {
             censusAnalyser = new IndianStatesCensusAnalyserProblem.CensusAnalyser();
             totalRecord = new Dictionary<string, CensusDTO>();
+            stateRecord = new Dictionary<string, CensusDTO>();
         }
 
         /// <summary>
@@ -72,6 +77,17 @@ namespace TestIndianStatesCensusAnalyser
         {
             var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(Country.INDIA, wrongHeaderIndianCensusfilePath, indianStateCensusHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, censusException.eType);
+        }
+
+        /// <summary>
+        /// TC2.1- Given indian code data file when readed should return census data count
+        /// </summary>
+        [Test]
+        public void GivenIndianCensusDataFileWhenReadedShouldReturnCodeDataCount()
+        {
+            stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateCodefilePath, indianStateCodeHeaders);
+            Assert.AreEqual(37, stateRecord.Count);
+            Console.WriteLine("Total state code => {0}", stateRecord.Count);
         }
     }
 }
