@@ -92,7 +92,7 @@ namespace TestIndianStatesCensusAnalyser
         }
 
         /// <summary>
-        /// TC1.2- Given state census csv file if incorrect returns a custom exception
+        /// TC2.2- Given state census csv file if incorrect returns a custom exception
         /// </summary>
         [Test]
         public void GivenWrongStateCodeCsvFile_WhenReaded_ShouldReturnCustomException()
